@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2BEFED18-375F-445F-A9EF-28AFA2D0A83B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YBB.DDD.Domain", "src\YBB.DDD.Domain\YBB.DDD.Domain.csproj", "{752CDCDF-FC9D-4E6F-A5E8-673C2BFD2D5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{752CDCDF-FC9D-4E6F-A5E8-673C2BFD2D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752CDCDF-FC9D-4E6F-A5E8-673C2BFD2D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752CDCDF-FC9D-4E6F-A5E8-673C2BFD2D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{752CDCDF-FC9D-4E6F-A5E8-673C2BFD2D5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{752CDCDF-FC9D-4E6F-A5E8-673C2BFD2D5D} = {2BEFED18-375F-445F-A9EF-28AFA2D0A83B}
+	EndGlobalSection
+EndGlobal
