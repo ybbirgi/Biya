@@ -2,13 +2,20 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2BEFED18-375F-445F-A9EF-28AFA2D0A83B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biya.Core", "Biya.Core\Biya.Core.csproj", "{EE0BC73B-5BFB-41FA-AE95-79AD9E241499}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE0BC73B-5BFB-41FA-AE95-79AD9E241499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0BC73B-5BFB-41FA-AE95-79AD9E241499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0BC73B-5BFB-41FA-AE95-79AD9E241499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0BC73B-5BFB-41FA-AE95-79AD9E241499}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{EE0BC73B-5BFB-41FA-AE95-79AD9E241499} = {2BEFED18-375F-445F-A9EF-28AFA2D0A83B}
 	EndGlobalSection
 EndGlobal

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Codebase\\YBB\\modules\\openiddict\\YBB.OpenIddict\\YBB.OpenIddict\\YBB.OpenIddict.csproj": {}
+    "E:\\Codebase\\Biya\\framework\\Biya.Core\\Biya.Core.csproj": {}
   },
   "projects": {
-    "E:\\Codebase\\YBB\\modules\\openiddict\\YBB.OpenIddict\\YBB.OpenIddict\\YBB.OpenIddict.csproj": {
+    "E:\\Codebase\\Biya\\framework\\Biya.Core\\Biya.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Codebase\\YBB\\modules\\openiddict\\YBB.OpenIddict\\YBB.OpenIddict\\YBB.OpenIddict.csproj",
-        "projectName": "YBB.OpenIddict",
-        "projectPath": "E:\\Codebase\\YBB\\modules\\openiddict\\YBB.OpenIddict\\YBB.OpenIddict\\YBB.OpenIddict.csproj",
+        "projectUniqueName": "E:\\Codebase\\Biya\\framework\\Biya.Core\\Biya.Core.csproj",
+        "projectName": "Biya.Core",
+        "projectPath": "E:\\Codebase\\Biya\\framework\\Biya.Core\\Biya.Core.csproj",
         "packagesPath": "C:\\Users\\yusuf\\.nuget\\packages\\",
-        "outputPath": "E:\\Codebase\\YBB\\modules\\openiddict\\YBB.OpenIddict\\YBB.OpenIddict\\obj\\",
+        "outputPath": "E:\\Codebase\\Biya\\framework\\Biya.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yusuf\\AppData\\Roaming\\NuGet\\NuGet.Config"
