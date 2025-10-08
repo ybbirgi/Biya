@@ -1,0 +1,6 @@
+namespace Biya.Modularity.ServiceLifetimes;
+
+public interface IScopedDependency
+{
+    
+}

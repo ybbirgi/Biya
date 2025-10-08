@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>      
+        <AssemblyName>Biya.Ddd.Domain</AssemblyName>
+        <PackageId>Biya.Ddd.Domain</PackageId>
+        <RootNamespace />
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Biya.Core\Biya.Core.csproj" />
+      <ProjectReference Include="..\Biya.MultiTenancy.Abstractions\Biya.MultiTenancy.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>
