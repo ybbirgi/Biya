@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Biya.Core\Biya.Core.csproj" />
+      <ProjectReference Include="..\..\Biya.MultiTenancy.Abstractions\Biya.MultiTenancy.Abstractions.csproj" />
+      <ProjectReference Include="..\Biya.Core\Biya.Core.csproj" />
+    </ItemGroup>
+
+</Project>
