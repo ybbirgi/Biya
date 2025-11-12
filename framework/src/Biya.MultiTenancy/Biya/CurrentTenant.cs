@@ -2,7 +2,7 @@ using Biya.DependencyInjection;
 
 namespace Biya;
 
-public class CurrentTenant : ICurrentTenant, ISingletonDependency
+public class CurrentTenant : ICurrentTenant, IScopedDependency
 {
     public virtual bool IsAvailable => Id.HasValue;
 

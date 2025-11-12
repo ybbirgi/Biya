@@ -1,6 +1,8 @@
+using Biya.DependencyInjection;
+
 namespace Biya;
 
-public class AsyncLocalCurrentOrganizationUnitAccessor : ICurrentOrganizationUnitAccessor
+public class AsyncLocalCurrentOrganizationUnitAccessor : ICurrentOrganizationUnitAccessor , ISingletonDependency
 {
     public static AsyncLocalCurrentOrganizationUnitAccessor Instance { get; } = new();
 
