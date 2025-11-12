@@ -1,3 +1,5 @@
+using Biya.DependencyInjection;
+
 namespace Biya;
 
 public class CurrentTenant : ICurrentTenant, ITransientDependency

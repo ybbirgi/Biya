@@ -12,8 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Biya.Core\Biya.Core.csproj" />
-      <ProjectReference Include="..\..\Biya.MultiTenancy.Abstractions\Biya.MultiTenancy.Abstractions.csproj" />
       <ProjectReference Include="..\Biya.Core\Biya.Core.csproj" />
       <ProjectReference Include="..\Biya.MultiTenancy.Abstractions\Biya.MultiTenancy.Abstractions.csproj" />
     </ItemGroup>
