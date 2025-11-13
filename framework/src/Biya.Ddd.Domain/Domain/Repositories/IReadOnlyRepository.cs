@@ -18,12 +18,14 @@ public interface IReadOnlyRepository<TEntity, TKey>
     Task<TEntity?> GetAsync(
         TKey id,
         bool includeDetails = true,
+        bool asNoTracking = false,
         CancellationToken cancellationToken = default
     );
 
     Task<TEntity?> GetByAsync(
         Expression<Func<TEntity, bool>> predicate,
         bool includeDetails = true,
+        bool asNoTracking = false,
         CancellationToken cancellationToken = default
     );
 
@@ -35,12 +37,14 @@ public interface IReadOnlyRepository<TEntity, TKey>
 
     Task<List<TEntity>> GetListAsync(
         bool includeDetails = false,
+        bool asNoTracking = true,
         CancellationToken cancellationToken = default
     );
 
     Task<List<TEntity>> GetListAsync(
         Expression<Func<TEntity, bool>> predicate,
         bool includeDetails = false,
+        bool asNoTracking = true,
         CancellationToken cancellationToken = default
     );
 
