@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Entities.Common;
 using Domain.Entities.ObjectExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -143,5 +144,15 @@ public static class EntityTypeBuilderExtensions
                 .IsRequired(false)
                 .HasColumnName(nameof(IMultiTenant.TenantId));
         }
+    }
+    
+    public static void IgnoreCommonEntities(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Ignore<Tenant>();
+        modelBuilder.Ignore<OrganizationUnit>();
+        modelBuilder.Ignore<Country>();
+        modelBuilder.Ignore<City>();
+        modelBuilder.Ignore<District>();
+        modelBuilder.Ignore<Neighborhood>();
     }
 }
