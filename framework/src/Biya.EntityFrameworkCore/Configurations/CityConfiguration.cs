@@ -12,7 +12,8 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
     )
     {
         builder.ConfigureByConvention();
-
+        builder.ToTable(builder.GetTableName(), CommonDatabaseConstants.CommonDatabaseSchema);
+        
         builder.HasOne(c => c.Country)
             .WithMany(c => c.Cities)
             .HasForeignKey(c => c.CountryCode)

@@ -10,4 +10,5 @@ public class District : CreationAuditedEntity<Guid> , ILookup
     public int? Code { get; set; }
     
     public virtual City City { get; set; }
+    public virtual IList<Neighborhood> Neighborhoods { get; set; }
 }

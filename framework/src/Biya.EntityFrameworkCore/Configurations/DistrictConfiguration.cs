@@ -12,6 +12,8 @@ public class DistrictConfiguration : IEntityTypeConfiguration<District>
     )
     {
         builder.ConfigureByConvention();
+        builder.ToTable(builder.GetTableName(), CommonDatabaseConstants.CommonDatabaseSchema);
+        
         builder.HasOne(c => c.City)
             .WithMany(c => c.Districts)
             .HasForeignKey(c => c.CityCode)
