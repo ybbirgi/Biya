@@ -12,7 +12,8 @@ public class BiyaDbContextFactory<TDbContext> : IDbContextFactory<TDbContext>, I
 
     public BiyaDbContextFactory(
         IServiceScopeFactory serviceScopeFactory,
-        IInjectPropertiesService injectPropertiesService)
+        IInjectPropertiesService injectPropertiesService
+    )
     {
         _serviceScopeFactory = serviceScopeFactory;
         _injectPropertiesService = injectPropertiesService;
