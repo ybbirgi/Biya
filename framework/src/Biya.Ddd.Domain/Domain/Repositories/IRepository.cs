@@ -2,12 +2,6 @@ using System.Linq.Expressions;
 using Domain.Entities;
 
 namespace Domain.Repositories;
-
-public interface IRepository<TEntity> : IRepository<TEntity, Guid>, IReadOnlyRepository<TEntity>
-    where TEntity : class, IEntity<Guid>
-{
-}
-
 public interface IRepository<TEntity, TKey> : IReadOnlyRepository<TEntity, TKey>
     where TEntity : class, IEntity<TKey>
 {

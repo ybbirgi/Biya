@@ -1,23 +1,12 @@
+using System.Linq.Dynamic.Core;
 using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Biya.DependencyInjection;
 using System.Linq.Expressions;
+using Domain.Models;
 
 namespace Biya.EntityFrameworkCore.Repositories;
-
-public abstract class EfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDbContext, TEntity, Guid>,
-    IRepository<TEntity>
-    where TDbContext : DbContext
-    where TEntity : class, IEntity<Guid>
-{
-    protected EfCoreRepository(
-        IDbContextProvider<TDbContext> dbContextProvider
-    )
-        : base(dbContextProvider)
-    {
-    }
-}
 
 public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<TEntity, TKey>, IScopedDependency
     where TDbContext : DbContext
@@ -35,7 +24,10 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     protected virtual TDbContext DbContext => DbContextProvider.GetDbContext();
     protected virtual DbSet<TEntity> DbSet => DbContext.Set<TEntity>();
 
-    protected virtual IQueryable<TEntity> ApplyNoTracking(IQueryable<TEntity> query, bool asNoTracking)
+    protected virtual IQueryable<TEntity> ApplyNoTracking(
+        IQueryable<TEntity> query,
+        bool asNoTracking
+    )
     {
         return asNoTracking ? query.AsNoTracking() : query;
     }
@@ -55,16 +47,16 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     )
     {
         var entity = await GetByAsync(
-            p => p.Id!.Equals(id), 
-            includeDetails: includeDetails, 
-            asNoTracking: asNoTracking, 
+            p => p.Id!.Equals(id),
+            includeDetails: includeDetails,
+            asNoTracking: asNoTracking,
             cancellationToken: cancellationToken
         );
-        
+
         return entity;
     }
 
-    public async Task<TEntity?> GetByAsync(
+    public virtual async Task<TEntity?> GetByAsync(
         Expression<Func<TEntity, bool>> predicate,
         bool includeDetails = true,
         bool asNoTracking = false,
@@ -78,7 +70,7 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
         return entity;
     }
 
-    public async Task<TEntity?> GetByQueryableAsync(
+    public virtual async Task<TEntity?> GetByQueryableAsync(
         Func<IQueryable<TEntity>, IQueryable<TEntity>>? queryable = null,
         bool asNoTracking = false,
         CancellationToken cancellationToken = default
@@ -91,11 +83,11 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
             queryableData = queryable(queryableData);
         }
 
-        queryableData = ApplyNoTracking(queryableData, asNoTracking); 
+        queryableData = ApplyNoTracking(queryableData, asNoTracking);
 
         return await queryableData.FirstOrDefaultAsync(cancellationToken: cancellationToken);
     }
-    
+
     public virtual async Task<List<TEntity>> GetListAsync(
         bool includeDetails = false,
         bool asNoTracking = true,
@@ -104,7 +96,7 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     {
         var query = GetQueryable(includeDetails);
         query = ApplyNoTracking(query, asNoTracking);
-        
+
         return await query.ToListAsync(cancellationToken);
     }
 
@@ -116,8 +108,8 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     )
     {
         var query = GetQueryable(includeDetails).Where(predicate);
-        query = ApplyNoTracking(query, asNoTracking); 
-        
+        query = ApplyNoTracking(query, asNoTracking);
+
         return await query.ToListAsync(cancellationToken);
     }
 
@@ -153,6 +145,7 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     {
         return DbSet.LongCountAsync(predicate, cancellationToken);
     }
+
     public virtual async Task<TEntity> InsertAsync(
         TEntity entity,
         bool autoSave = false,
@@ -234,7 +227,7 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     )
     {
         var entity = await DbSet.FindAsync(new object?[] { id }, cancellationToken: cancellationToken);
-        
+
         if (entity == null)
         {
             return;
@@ -265,5 +258,48 @@ public abstract class EfCoreRepository<TDbContext, TEntity, TKey> : IRepository<
     {
         var entities = await GetListAsync(predicate, asNoTracking: true, cancellationToken: cancellationToken);
         await DeleteManyAsync(entities, autoSave, cancellationToken);
+    }
+
+    public virtual async Task<List<TEntity>> GetDynamicListAsync(
+        DynamicQueryModel input,
+        bool includeDetails = false,
+        bool asNoTracking = true,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var query = GetQueryable(includeDetails);
+
+        if (!string.IsNullOrWhiteSpace(input.Filter))
+        {
+            query = query.Where(input.Filter, input.FilterArgs ?? Array.Empty<object>());
+        }
+
+        if (!string.IsNullOrWhiteSpace(input.OrderBy))
+        {
+            query = query.OrderBy(input.OrderBy);
+        }
+
+        query = query
+            .Skip(input.SkipCount)
+            .Take(input.MaxResultCount);
+
+        query = ApplyNoTracking(query, asNoTracking);
+
+        return await query.ToListAsync(cancellationToken);
+    }
+
+    public virtual Task<long> GetDynamicCountAsync(
+        DynamicQueryModel input,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var query = GetQueryable(false);
+
+        if (!string.IsNullOrWhiteSpace(input.Filter))
+        {
+            query = query.Where(input.Filter, input.FilterArgs ?? Array.Empty<object>());
+        }
+
+        return query.LongCountAsync(cancellationToken);
     }
 }

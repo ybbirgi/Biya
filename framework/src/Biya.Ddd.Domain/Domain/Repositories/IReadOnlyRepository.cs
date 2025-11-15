@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Domain.Entities;
+using Domain.Models;
 
 namespace Domain.Repositories;
 
@@ -60,6 +61,18 @@ public interface IReadOnlyRepository<TEntity, TKey>
 
     Task<long> GetCountAsync(
         Expression<Func<TEntity, bool>> predicate,
+        CancellationToken cancellationToken = default
+    );
+    
+    Task<List<TEntity>> GetDynamicListAsync(
+        DynamicQueryModel query,
+        bool includeDetails = false,
+        bool asNoTracking = true,
+        CancellationToken cancellationToken = default
+    );
+
+    Task<long> GetDynamicCountAsync(
+        DynamicQueryModel query,
         CancellationToken cancellationToken = default
     );
 }
